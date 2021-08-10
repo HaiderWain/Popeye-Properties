@@ -1,0 +1,262 @@
+{% load static %}
+{% block content %}
+<!doctype html>
+<html lang="en" class="h-100">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.82.0">
+    <title>Property Recommendation System</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/cover/">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{%  static  'blog/bootstrap.min.css'  %}">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      h3{
+        font-size: xx-large;
+      }
+
+      h4{
+        color: #000000;
+        font-size: xx-large;
+      }
+
+      h5{
+        color: black;
+      }
+
+      h5: hover{
+        color: blue;
+      }
+
+      h69{
+        font-size: 3.75rem;
+
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+        /* Style the search field */
+        form.example input[type=text] {
+          padding: 10px;
+          padding-left: 30px;
+          font-size: 17px;
+          border: 1px;
+          float: left;
+          width: 87%;
+          height: 35%;
+          background: #ffffff;
+          border-radius: 5px;
+          position: relative;
+          left: 50px;
+        }
+
+         form.example input[type=text]:focus {
+            outline: none;
+         }
+
+        /* Style the submit button */
+        form.example button {
+          padding: 10px;
+          float: left;
+          width: 13%;
+          height: 35%;
+          background: #ffffff;
+          color: purple;
+          font-size: 20px;
+          border: 1px;
+          border-left: none; /* Prevent double borders */
+          border-radius: 0px 5px 5px 0px;
+          cursor: pointer;
+          position: relative;
+          right: 50px;
+          outline: none;
+        }
+
+        form.example button:hover {
+          background: #f3e6ff;
+        }
+
+        /* Clear floats */
+        form.example::after {
+          content: "";
+          clear: both;
+          display: table;
+        }
+        #background {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            z-index: -2;
+            background-attachment: scroll;
+        }
+        .stretch {
+            width:100%;
+            height:50%;
+        }
+        #background2 {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            z-index: -1;
+            background-attachment: scroll;
+        }
+        .stretch2 {
+            width:100%;
+            height:50%;
+            opacity: 0.4;
+        }
+        .col-centered{
+            float: none;
+            margin: 0 auto;
+        }
+
+        .card {
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+          transition: 0.3s;
+        }
+
+        .card:hover {
+          box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+        .container3 {
+          padding: 2px 16px;
+          display:flex;
+          flex-direction:column;
+        }
+
+        .container2 {
+          display: flex;
+          flex-direction: row;
+          justify-content:center;
+          gap: 50px;
+        }
+
+        .a {
+              text-decoration:none;
+           }
+
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="{%  static  'blog/cover.css'  %}">
+</head>
+<body class="d-flex w-100 h-100 text-center text-white bg-light">
+<div class="container">
+    <div class="row h-100">
+        <div class="container d-flex w-100 h-50 p-3 mx-auto flex-column">
+            <div id="background">
+                <img src="{% static 'blog/Home2.png' %}" class="stretch">
+            </div>
+            <div id="background2">
+                <img src="{% static 'blog/opacity.png' %}" class="stretch2">
+            </div>
+            <header>
+                <div>
+                    <h3 class="float-md-start mb-0">Popeye Properties</h3>
+                    <nav class="nav nav-masthead justify-content-center float-md-end">
+                        <a class="nav-link " aria-current="page" href="{% url 'blog-preferences' %}">Recommend Me!</a>
+                        {% if user.is_authenticated and check%}
+                            <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+                            <a class="nav-link" href="{% url 'favoriteProperties' %}">Favourites</a>
+                            <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                        {% elif user.is_authenticated and check2 %}
+                            <a class="nav-link" href="{% url 'favoriteProperties' %}">Favourites</a>
+                            <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                        {% else %}
+                            <a class="nav-link" href="{% url 'login' %}">Login</a>
+                            <a class="nav-link" href="{% url 'register' %}">Register</a>
+
+                        {% endif %}
+                    </nav>
+                </div>
+            </header>
+            <form class="example my-auto w-75 col-lg-1 col-centered" action="/search">
+                <h69>Discover Your New Home</h69>
+                <br/>
+                <br/>
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit"><i class="fa fa-search" style="color: purple"></i></button>
+            </form>
+        </div>
+        <div class="container d-flex w-100 h-50 p-3 mx-auto flex-column">
+            <header>
+                <div>
+                    <h4 class="float-md-center mb-0">Featured Properties</h4>
+                </div>
+            </header>
+            <br>
+            <div class="container2">
+                <a href="{% url 'blog-propertydetails' allProps.0.id %}">
+                <div class="card" >
+                      <img src="{% static 'blog/house1.png' %}" >
+                      <div class="container3">
+                          <h5><b>Address: {{ allProps.1.address }}</b></h5>
+                          <h5><b>Society: {{ allProps.1.society }}</b></h5>
+                      </div>
+                </div>
+                </a>
+                <a href="{% url 'blog-propertydetails' allProps.1.id %}">
+                    <div class="card" >
+                          <img src="{% static 'blog/house2.jpg' %}" >
+                          <div class="container3">
+                              <h5><b>Address: {{ allProps.2.address }}</b></h5>
+                              <h5><b>Society: {{ allProps.2.society }}</b></h5>
+                          </div>
+                    </div>
+                </a>
+                <a href="{% url 'blog-propertydetails' allProps.2.id %}">
+                    <div class="card">
+                          <img src="{% static 'blog/house3.jpeg' %}" >
+                          <div class="container3">
+                              <h5><b>Address: {{ allProps.3.address }}</b></h5>
+                              <h5><b>Society: {{ allProps.3.society }}</b></h5>
+                          </div>
+                    </div>
+                </a>
+                <a href="{% url 'blog-propertydetails' allProps.3.id %}">
+                    <div class="card">
+                          <img src="{% static 'blog/house5.jpg' %}" >
+                          <div class="container3">
+                              <h5><b>Address: {{ allProps.4.address }}</b></h5>
+                              <h5><b>Society: {{ allProps.4.society }}</b></h5>
+                          </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+</body>
+</html>

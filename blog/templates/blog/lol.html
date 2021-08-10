@@ -1,0 +1,89 @@
+{% extends "blog/navbar.html" %}
+{% load static %}
+{% block content %}
+<style>
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 15%;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+  padding: 2px 16px;
+}
+
+.container2 {
+  margin-left: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.a {
+      text-decoration:none;
+   }
+
+
+</style>
+<div class="container2">
+    <a href="{% url 'blog-propertydetails' bestProp.id %}">
+    <div class="card" >
+          <img src="{% static 'blog/house1.png' %}" style="width:100%">
+          <div class="container">
+              <h4><b>1</b></h4>
+              <h5><b>{{ bestProp }}</b></h5>
+          </div>
+    </div>
+    </a>
+    <br/>
+    <br/>
+    <a href="{% url 'blog-propertydetails' allprops2.1.id %}">
+        <div class="card" >
+              <img src="{% static 'blog/house2.jpg' %}" style="width:100%">
+              <div class="container">
+                  <h4><b>2</b></h4>
+                  <h5><b>{{ allprops2.1 }}</b></h5>
+              </div>
+        </div>
+    </a>
+    <br/>
+    <br/>
+
+    <a href="{% url 'blog-propertydetails' allprops2.2.id %}">
+        <div class="card">
+              <img src="{% static 'blog/house3.jpeg' %}" style="width:100%">
+              <div class="container">
+                  <h4><b>3</b></h4>
+                  <h5><b>{{ allprops2.2 }}</b></h5>
+              </div>
+        </div>
+    </a>
+    <br/>
+    <br/>
+    <a href="{% url 'blog-propertydetails' allprops2.3.id %}">
+        <div class="card">
+              <img src="{% static 'blog/house4.jpg' %}" style="width:100%">
+              <div class="container">
+                  <h4><b>4</b></h4>
+                  <h5><b>{{ allprops2.3 }}</b></h5>
+              </div>
+        </div>
+    </a>
+    <br/>
+    <br/>
+    <a href="{% url 'blog-propertydetails' allprops2.4.id %}">
+    <div class="card">
+          <img src="{% static 'blog/house5.jpg' %}" style="width:100%">
+          <div class="container">
+              <h4><b>5</b></h4>
+              <h5><b>{{ allprops2.4 }}</b></h5>
+          </div>
+    </div>
+    </a>
+</div>
+
+{% endblock content %}
